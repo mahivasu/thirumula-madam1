@@ -1,27 +1,2264 @@
-# Women's Day Special Website 🌸
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Thirumala Madam - Ultimate Women's Day Tribute ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-This project is a special website created to celebrate International Women's Day.  
-The website is designed with animations, images, and music to make the celebration more beautiful and interactive.
+        :root {
+            --gold: #ffd700;
+            --pink: #ff1493;
+            --purple: #9400d3;
+            --rose: #ff69b4;
+            --hot-pink: #ff006e;
+            --lavender: #da70d6;
+        }
 
-## Features
-- Beautiful Women's Day message
-- Animated design and colors
-- Random images and songs
-- Interactive website experience
-- QR Code access to open the website easily
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #000;
+            overflow-x: hidden;
+            color: white;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">✨</text></svg>'), auto;
+        }
 
-## Technologies Used
-- HTML
-- CSS
-- JavaScript
-- GitHub Pages for hosting
+        /* ============================================
+           MEGA LOADING SCREEN - CINEMATIC OPENING
+           ============================================ */
+        .mega-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #1a0033 0%, #000000 70%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow: hidden;
+        }
 
-## Purpose of the Project
-This website was created to express respect, gratitude, and appreciation for women and their contributions to society.
+        .mega-loader.explode {
+            transform: scale(2);
+            opacity: 0;
+            pointer-events: none;
+        }
 
-## Live Website
-You can visit the website here:
-https://mahivasu.github.io/thirumalamadam/
+        .loader-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
 
-## Author
-Created by **Vasu Mannem**
+        .loader-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 6rem;
+            background: linear-gradient(45deg, #ffd700, #ff1493, #ffd700, #ff69b4, #9400d3);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 2s ease infinite, pulse-text 1.5s ease-in-out infinite;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.9));
+            line-height: 1.3;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.9)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 60px rgba(255, 20, 147, 1)); }
+        }
+
+        .loading-bar-container {
+            width: 500px;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ff1493, #9400d3, #ffd700);
+            background-size: 300% 100%;
+            width: 0%;
+            animation: loading 4s ease-out forwards, shimmer 0.5s linear infinite;
+            box-shadow: 0 0 30px #ffd700;
+            position: relative;
+        }
+
+        .loading-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer-bar 1s infinite;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% 0; }
+        }
+
+        @keyframes shimmer-bar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .loading-percentage {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: #ffd700;
+            margin-top: 30px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+            font-weight: 700;
+        }
+
+        .loader-subtext {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.3rem;
+            margin-top: 20px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            animation: fade-pulse 2s infinite;
+        }
+
+        @keyframes fade-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Background particles in loader */
+        .loader-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .loader-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffd700;
+            animation: float-loader 3s ease-in-out infinite;
+        }
+
+        @keyframes float-loader {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { transform: translateY(-100px) scale(1.5); opacity: 1; }
+        }
+
+        /* ============================================
+           EXPLOSION EFFECTS SYSTEM
+           ============================================ */
+        .explosion-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99998;
+            overflow: hidden;
+        }
+
+        .blast-particle {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .blast-particle.explode-anim {
+            animation: blast-out 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes blast-out {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            20% {
+                transform: translate(calc(var(--tx) * 0.2), calc(var(--ty) * 0.2)) scale(1.5);
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Shockwave effect */
+        .shockwave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            border: 3px solid #ffd700;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .shockwave.active {
+            animation: shockwave-expand 1.5s ease-out forwards;
+        }
+
+        @keyframes shockwave-expand {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+                border-width: 10px;
+            }
+            100% {
+                width: 200vmax;
+                height: 200vmax;
+                opacity: 0;
+                border-width: 0;
+            }
+        }
+
+        /* ============================================
+           BALLOON SYSTEM - ADVANCED
+           ============================================ */
+        .balloon-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 60px;
+            height: 75px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 0.95;
+            box-shadow: 
+                inset -10px -10px 20px rgba(0,0,0,0.2),
+                inset 10px 10px 20px rgba(255,255,255,0.3),
+                0 5px 15px rgba(0,0,0,0.2);
+            animation: float-up-balloon 10s ease-in forwards;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            width: 2px;
+            height: 35px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+            transform: translateX(-50%);
+        }
+
+        .balloon::after {
+            content: '✨';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            animation: balloon-sparkle 1s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px gold);
+        }
+
+        @keyframes float-up-balloon {
+            0% {
+                transform: translateY(0) translateX(0) rotate(-5deg);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.95;
+            }
+            25% {
+                transform: translateY(-25vh) translateX(20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-50vh) translateX(-20px) rotate(-3deg);
+            }
+            75% {
+                transform: translateY(-75vh) translateX(15px) rotate(3deg);
+                opacity: 0.95;
+            }
+            100% {
+                transform: translateY(-120vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes balloon-sparkle {
+            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.6; transform: translateX(-50%) scale(1.3); }
+        }
+
+        /* Balloon colors with gradients */
+        .balloon-gold {
+            background: radial-gradient(circle at 30% 30%, #ffd700, #ffaa00);
+        }
+        .balloon-pink {
+            background: radial-gradient(circle at 30% 30%, #ff69b4, #ff1493);
+        }
+        .balloon-purple {
+            background: radial-gradient(circle at 30% 30%, #da70d6, #9400d3);
+        }
+        .balloon-rose {
+            background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff006e);
+        }
+        .balloon-blue {
+            background: radial-gradient(circle at 30% 30%, #87ceeb, #4169e1);
+        }
+
+        /* ============================================
+           CONFETTI CANVAS SYSTEM
+           ============================================ */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* ============================================
+           MAIN CONTENT WRAPPER
+           ============================================ */
+        .main-wrapper {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: none;
+            opacity: 0;
+            transform: scale(0.9) translateY(50px);
+            transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .main-wrapper.show {
+            display: block;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* ============================================
+           CINEMATIC BACKGROUND SYSTEM
+           ============================================ */
+        .cinematic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            z-index: -2;
+            animation: bg-shift 20s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes bg-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated mesh gradient overlay */
+        .mesh-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+            background: 
+                radial-gradient(at 40% 20%, hsla(300,100%,50%,0.3) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, hsla(280,100%,60%,0.3) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(340,100%,60%,0.3) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, hsla(260,100%,50%,0.3) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(320,100%,50%,0.3) 0px, transparent 50%);
+            animation: mesh-move 15s ease infinite;
+        }
+
+        @keyframes mesh-move {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Stars background */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(1);
+                box-shadow: 0 0 5px rgba(255,255,255,0.5);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.5);
+                box-shadow: 0 0 15px white, 0 0 30px rgba(255,215,0,0.5);
+            }
+        }
+
+        /* Shooting stars */
+        .shooting-star {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ffd700, transparent);
+            animation: shoot 3s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(-100px) translateY(100px) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) translateY(-100px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           HERO SECTION - MAIN STAGE
+           ============================================ */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Floating decorative elements */
+        .floating-decorations {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .floater {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 10px rgba(255,215,0,0.5));
+            animation: float-around 20s ease-in-out infinite;
+        }
+
+        @keyframes float-around {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg) scale(1); 
+            }
+            25% { 
+                transform: translate(100px, -100px) rotate(90deg) scale(1.2); 
+            }
+            50% { 
+                transform: translate(0, -200px) rotate(180deg) scale(1); 
+            }
+            75% { 
+                transform: translate(-100px, -100px) rotate(270deg) scale(0.8); 
+            }
+        }
+
+        /* ============================================
+           3D GLASS CARD - NO ROTATION
+           ============================================ */
+        .glass-card {
+            width: 95%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 40px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            padding: 50px;
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.5),
+                0 0 100px rgba(255, 215, 0, 0.1),
+                inset 0 0 0 1px rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 35px 60px rgba(0,0,0,0.6),
+                0 0 120px rgba(255, 215, 0, 0.2),
+                inset 0 0 0 1px rgba(255,255,255,0.2);
+        }
+
+        /* Animated border gradient */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffd700, #ff1493, #9400d3, #ffd700, #ff69b4);
+            background-size: 400% 400%;
+            z-index: -1;
+            border-radius: 42px;
+            animation: border-gradient 4s ease infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes border-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Inner glow */
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.1), transparent 70%);
+            pointer-events: none;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ============================================
+           TYPOGRAPHY SYSTEM
+           ============================================ */
+        .main-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 7rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffd700 0%, #ff1493 25%, #ffd700 50%, #ff69b4 75%, #ffd700 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 4s ease infinite;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
+            margin-bottom: 10px;
+            line-height: 1.1;
+            position: relative;
+        }
+
+        .main-title::after {
+            content: 'Happy Women\'s Day';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,20,147,0.3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(20px);
+            z-index: -1;
+            animation: gradient-flow 4s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .madam-name {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            text-align: center;
+            color: #fff;
+            margin: 30px 0;
+            position: relative;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        .madam-name .letter {
+            display: inline-block;
+            animation: letter-glow 2s ease-in-out infinite;
+            text-shadow: 
+                0 0 20px rgba(255, 20, 147, 0.8),
+                0 0 40px rgba(255, 20, 147, 0.6),
+                0 0 60px rgba(255, 20, 147, 0.4);
+        }
+
+        @keyframes letter-glow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px rgba(255, 20, 147, 0.8),
+                    0 0 40px rgba(255, 20, 147, 0.6),
+                    0 0 60px rgba(255, 20, 147, 0.4);
+                transform: translateY(0);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 30px rgba(255, 20, 147, 1),
+                    0 0 60px rgba(255, 20, 147, 0.8),
+                    0 0 90px rgba(255, 20, 147, 0.6);
+                transform: translateY(-5px);
+            }
+        }
+
+        .subtitle-fancy {
+            text-align: center;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .subtitle-fancy::before,
+        .subtitle-fancy::after {
+            content: '✦';
+            color: #ffd700;
+            font-size: 1.2rem;
+            animation: spin-slow 4s linear infinite;
+        }
+
+        @keyframes spin-slow {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============================================
+           IMAGE GALLERY - GUARANTEED WORKING
+           ============================================ */
+        .gallery-wrapper {
+            width: 100%;
+            height: 550px;
+            position: relative;
+            margin: 40px 0;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.5),
+                0 0 0 3px rgba(255, 215, 0, 0.3);
+        }
+
+        .gallery-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.1);
+        }
+
+        .gallery-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 6s ease;
+        }
+
+        .gallery-slide.active img {
+            transform: scale(1.05);
+        }
+
+        /* Image overlay gradient */
+        .gallery-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7) 100%);
+            pointer-events: none;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            z-index: 2;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .gallery-slide.active .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .slide-desc {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.6;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Gallery indicators */
+        .gallery-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .indicator.active {
+            background: #ffd700;
+            transform: scale(1.3);
+            box-shadow: 0 0 10px #ffd700;
+            border-color: #fff;
+        }
+
+        .indicator:hover {
+            background: rgba(255,215,0,0.7);
+        }
+
+        /* ============================================
+           MESSAGE TYPEWRITER SECTION
+           ============================================ */
+        .message-container {
+            background: rgba(0,0,0,0.4);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 40px 0;
+            border-left: 5px solid #ffd700;
+            border-right: 5px solid #ff1493;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.3);
+        }
+
+        .message-container::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            font-size: 10rem;
+            color: rgba(255,215,0,0.15);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .typewriter-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            line-height: 1.8;
+            color: #fff;
+            min-height: 350px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cursor-type {
+            display: inline-block;
+            width: 4px;
+            height: 1.2em;
+            background: linear-gradient(to bottom, #ffd700, #ff1493);
+            animation: cursor-blink 0.8s infinite;
+            margin-left: 5px;
+            vertical-align: middle;
+            box-shadow: 0 0 10px #ffd700;
+            border-radius: 2px;
+        }
+
+        @keyframes cursor-blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* ============================================
+           MUSIC PLAYER PRO MAX
+           ============================================ */
+        .music-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid rgba(255,215,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%);
+            animation: music-glow 10s ease infinite;
+        }
+
+        @keyframes music-glow {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(10%, 10%); }
+        }
+
+        .vinyl-player {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vinyl-disc {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at 30% 30%, #333, #000),
+                repeating-radial-gradient(#222 0, #222 2px, #111 3px, #111 4px);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: vinyl-spin 3s linear infinite;
+            animation-play-state: paused;
+            border: 8px solid #111;
+        }
+
+        .vinyl-disc.playing {
+            animation-play-state: running;
+        }
+
+        @keyframes vinyl-spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .vinyl-disc::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffd700, #ff1493);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255,215,0,0.5);
+        }
+
+        .vinyl-disc::after {
+            content: '🎵';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            z-index: 2;
+        }
+
+        .track-details {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .track-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255,215,0,0.3);
+        }
+
+        .track-artist-name {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Audio visualizer bars */
+        .visualizer-container {
+            display: flex;
+            gap: 6px;
+            height: 60px;
+            align-items: flex-end;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        .v-bar {
+            flex: 1;
+            background: linear-gradient(to top, #ff1493, #ffd700);
+            border-radius: 3px;
+            transition: height 0.1s ease;
+            min-height: 5px;
+            box-shadow: 0 0 10px rgba(255,215,0,0.3);
+        }
+
+        /* Controls */
+        .controls-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,20,147,0.2));
+            border: 2px solid rgba(255,215,0,0.5);
+            color: #fff;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .control-btn:hover::before {
+            left: 100%;
+        }
+
+        .control-btn:hover {
+            background: linear-gradient(135deg, rgba(255,215,0,0.4), rgba(255,20,147,0.4));
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255,215,0,0.3);
+            border-color: #ffd700;
+        }
+
+        .control-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .control-btn.primary {
+            background: linear-gradient(135deg, #ffd700, #ff1493);
+            color: #000;
+            font-size: 1.3rem;
+            padding: 20px 50px;
+            border: none;
+        }
+
+        .control-btn.primary:hover {
+            box-shadow: 0 20px 40px rgba(255,215,0,0.5);
+        }
+
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin: 20px 0;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar-music {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ff1493);
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.1s;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+
+        /* Playlist */
+        .playlist-container {
+            max-height: 300px;
+            overflow-y: auto;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.3);
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .playlist-item {
+            padding: 18px 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .playlist-item:hover {
+            background: rgba(255,215,0,0.1);
+            padding-left: 35px;
+        }
+
+        .playlist-item.active {
+            background: linear-gradient(90deg, rgba(255,215,0,0.2), transparent);
+            border-left: 4px solid #ffd700;
+        }
+
+        .song-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .song-name {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .song-artist {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .song-duration {
+            color: #ffd700;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           EFFECT BUTTONS SECTION
+           ============================================ */
+        .effects-section {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .mega-btn {
+            background: linear-gradient(135deg, #ff006e, #ff1493, #9400d3);
+            background-size: 200% 200%;
+            color: white;
+            border: none;
+            padding: 25px 50px;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            box-shadow: 0 10px 40px rgba(255, 0, 110, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: btn-gradient 3s ease infinite;
+        }
+
+        @keyframes btn-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .mega-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .mega-btn:hover::before {
+            opacity: 1;
+        }
+
+        .mega-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.6);
+        }
+
+        .mega-btn:active {
+            transform: scale(1.05) translateY(-2px);
+        }
+
+        .mega-btn.gold {
+            background: linear-gradient(135deg, #ffd700, #ffaa00, #ffd700);
+            background-size: 200% 200%;
+            color: #000;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .mega-btn.gold:hover {
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.6);
+        }
+
+        .mega-btn.purple {
+            background: linear-gradient(135deg, #9400d3, #ff1493, #9400d3);
+            background-size: 200% 200%;
+            box-shadow: 0 10px 40px rgba(148, 0, 211, 0.4);
+        }
+
+        .mega-btn.purple:hover {
+            box-shadow: 0 20px 60px rgba(148, 0, 211, 0.6);
+        }
+
+        /* ============================================
+           FLOATING HEARTS SYSTEM
+           ============================================ */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float-heart 6s ease-in forwards;
+            pointer-events: none;
+            filter: drop-shadow(0 0 10px rgba(255,20,147,0.8));
+        }
+
+        @keyframes float-heart {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) scale(1) rotate(10deg);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.3) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           FIREWORKS SYSTEM
+           ============================================ */
+        .firework-particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        /* ============================================
+           SPARKLE CURSOR TRAIL
+           ============================================ */
+        .sparkle-cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffd700, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
+            animation: sparkle-fade-out 1s ease-out forwards;
+            box-shadow: 0 0 20px #ffd700;
+        }
+
+        @keyframes sparkle-fade-out {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        /* ============================================
+           QUOTE SECTION
+           ============================================ */
+        .quote-section {
+            text-align: center;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffd700;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+            text-shadow: 0 0 30px rgba(255,215,0,0.3);
+        }
+
+        .quote-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quote-author {
+            margin-top: 20px;
+            color: rgba(255,255,255,0.8);
+            font-size: 1.3rem;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            .main-title { font-size: 4rem; }
+            .madam-name { font-size: 2.5rem; letter-spacing: 4px; }
+            .glass-card { padding: 30px; }
+            .gallery-wrapper { height: 350px; }
+            .typewriter-text { font-size: 2rem; }
+            .loader-text { font-size: 3.5rem; }
+            .loading-bar-container { width: 300px; }
+            .mega-btn { padding: 20px 35px; font-size: 1.1rem; }
+            .vinyl-disc { width: 140px; height: 140px; }
+        }
+
+        /* ============================================
+           SCROLLBAR STYLING
+           ============================================ */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.3);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ffd700, #ff1493);
+            border-radius: 6px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ff1493, #ffd700);
+        }
+
+        /* ============================================
+           ANIMATION CLASSES
+           ============================================ */
+        .fade-in {
+            animation: fade-in 1s ease forwards;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.4); }
+            50% { box-shadow: 0 0 40px rgba(255,215,0,0.8); }
+        }
+
+        /* Screen shake animation */
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         MEGA LOADING SCREEN
+         ============================================ -->
+    <div class="mega-loader" id="megaLoader">
+        <div class="loader-particles" id="loaderParticles"></div>
+        <div class="shockwave" id="shockwave"></div>
+        <div class="loader-content">
+            <div class="loader-text">For Thirumala Madam<br>With Love & Respect</div>
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+            <div class="loading-percentage" id="loadPercent">0%</div>
+            <div class="loader-subtext">Loading Magical Experience</div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         EFFECT CONTAINERS
+         ============================================ -->
+    <div class="explosion-container" id="explosionContainer"></div>
+    <div class="balloon-container" id="balloonContainer"></div>
+    <canvas id="confetti-canvas"></canvas>
+    <div class="floating-decorations" id="floatingDecorations"></div>
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- ============================================
+         MAIN CONTENT
+         ============================================ -->
+    <div class="main-wrapper" id="mainWrapper">
+        <div class="cinematic-bg"></div>
+        <div class="mesh-gradient"></div>
+        <div class="stars-container" id="starsContainer"></div>
+
+        <section class="hero-section">
+            <div class="glass-card" id="glassCard">
+                <div class="card-content">
+
+                    <!-- TITLES -->
+                    <h1 class="main-title">Happy Women's Day</h1>
+                    <h2 class="madam-name" id="madamName">Thirumala Madam</h2>
+                    <p class="subtitle-fancy">A Legendary Tribute</p>
+
+                    <!-- IMAGE GALLERY - MULTIPLE BACKUP SOURCES -->
+                    <div class="gallery-wrapper" id="gallery">
+                        <div class="gallery-slide active">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&q=80" 
+                                 alt="Golden Roses"
+                                 onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2019/11/11/16/49/roses-4618236_1280.jpg';">
+                            <div class="slide-content">
+                                <h3 class="slide-title">Golden Elegance</h3>
+                                <p class="slide-desc">Like these golden roses, your wisdom shines eternally bright</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1200&q=80" 
+                                 alt="Pink Flowers"
+                                 onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2015/04/19/08/32/rose-729509_1280.jpg';">
+                            <div class="slide-content">
+                                <h3 class="slide-title">Grace & Beauty</h3>
+                                <p class="slide-desc">Your presence brings color and joy to our lives every day</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1200&q=80" 
+                                 alt="Magical Lights"
+                                 onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2016/11/29/11/48/abstract-1869426_1280.jpg';">
+                            <div class="slide-content">
+                                <h3 class="slide-title">Illuminating Light</h3>
+                                <p class="slide-desc">You guide us through darkness with your infinite wisdom</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80" 
+                                 alt="Mountains"
+                                 onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_1280.jpg';">
+                            <div class="slide-content">
+                                <h3 class="slide-title">Majestic Strength</h3>
+                                <p class="slide-desc">Your strength is as unshakeable as the highest mountains</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1200&q=80" 
+                                 alt="Butterfly"
+                                 onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2016/01/08/11/57/butterfly-1127666_1280.jpg';">
+                            <div class="slide-content">
+                                <h3 class="slide-title">Beautiful Transformation</h3>
+                                <p class="slide-desc">You transform ordinary students into extraordinary beings</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://images.unsplash.com/photo-1518882605630-8eb565f5e673?w=1200&q=80" 
+                                 alt="Sunset"
+                                 onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2016/11/25/23/15/moon-1859616_1280.jpg';">
+                            <div class="slide-content">
+                                <h3 class="slide-title">Golden Heart</h3>
+                                <p class="slide-desc">Your heart radiates warmth and love like the golden sun</p>
+                            </div>
+                        </div>
+
+                        <!-- Indicators -->
+                        <div class="gallery-indicators" id="indicators"></div>
+                    </div>
+
+                    <!-- TYPEWRITER MESSAGE -->
+                    <div class="message-container">
+                        <div class="typewriter-text" id="typewriter"></div>
+                        <span class="cursor-type" id="cursor"></span>
+                    </div>
+
+                    <!-- QUOTE SECTION -->
+                    <div class="quote-section">
+                        <p class="quote-text" id="quoteText">"The influence of a good teacher can never be erased"</p>
+                        <p class="quote-author" id="quoteAuthor">- Unknown</p>
+                    </div>
+
+                    <!-- MUSIC PLAYER PRO -->
+                    <div class="music-section">
+                        <div class="vinyl-player">
+                            <div class="vinyl-disc" id="vinylDisc"></div>
+                            <div class="track-details">
+                                <div class="track-title" id="trackTitle">Select a Song</div>
+                                <div class="track-artist-name" id="trackArtist">For Thirumala Madam</div>
+                                <div class="visualizer-container" id="visualizer">
+                                    <div class="v-bar" style="height: 10%"></div>
+                                    <div class="v-bar" style="height: 30%"></div>
+                                    <div class="v-bar" style="height: 50%"></div>
+                                    <div class="v-bar" style="height: 70%"></div>
+                                    <div class="v-bar" style="height: 40%"></div>
+                                    <div class="v-bar" style="height: 60%"></div>
+                                    <div class="v-bar" style="height: 80%"></div>
+                                    <div class="v-bar" style="height: 20%"></div>
+                                    <div class="v-bar" style="height: 50%"></div>
+                                    <div class="v-bar" style="height: 90%"></div>
+                                    <div class="v-bar" style="height: 35%"></div>
+                                    <div class="v-bar" style="height: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-container" id="progressContainer">
+                            <div class="progress-bar-music" id="progressBar"></div>
+                        </div>
+
+                        <div class="controls-container">
+                            <button class="control-btn" onclick="prevSong()">⏮️ Prev</button>
+                            <button class="control-btn primary" onclick="togglePlay()" id="playBtn">▶️ Play</button>
+                            <button class="control-btn" onclick="nextSong()">⏭️ Next</button>
+                            <button class="control-btn" onclick="toggleShuffle()" id="shuffleBtn">🔀 Shuffle: OFF</button>
+                        </div>
+
+                        <div class="playlist-container" id="playlistContainer"></div>
+                    </div>
+
+                    <!-- EFFECT BUTTONS -->
+                    <div class="effects-section">
+                        <button class="mega-btn" onclick="triggerMegaExplosion()">💥 Mega Explosion</button>
+                        <button class="mega-btn gold" onclick="launchBalloonStorm()">🎈 Balloon Storm</button>
+                        <button class="mega-btn purple" onclick="triggerFireworks()">🎆 Fireworks Show</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION
+        // ============================================
+        const config = {
+            songs: [
+                { title: "A Thousand Years", artist: "Christina Perri", duration: "4:45", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+                { title: "Perfect", artist: "Ed Sheeran", duration: "4:23", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+                { title: "All of Me", artist: "John Legend", duration: "4:30", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
+                { title: "Someone Like You", artist: "Adele", duration: "4:45", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+                { title: "Fix You", artist: "Coldplay", duration: "4:55", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" },
+                { title: "Stay With Me", artist: "Sam Smith", duration: "2:52", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" },
+                { title: "Love Me Like You Do", artist: "Ellie Goulding", duration: "4:12", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" },
+                { title: "Thinking Out Loud", artist: "Ed Sheeran", duration: "4:41", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3" }
+            ],
+            messages: [
+                "My Dearest Thirumala Madam,",
+                "On this magnificent Women's Day...",
+                "I celebrate you with all my heart!",
+                "You are my teacher, my guide,",
+                "And most importantly, like a mother to me.",
+                "Your wisdom illuminates my darkest days,",
+                "Your kindness warms my soul eternally.",
+                "I respect you beyond measure,",
+                "Just as I respect my own mother.",
+                "You are the embodiment of grace,",
+                "Strength, beauty, and infinite love.",
+                "Thank you for shaping my future,",
+                "Thank you for believing in me.",
+                "Happy Women's Day, Thirumala Madam!",
+                "You are truly one of a kind! 🌹✨💖"
+            ],
+            quotes: [
+                { text: "The influence of a good teacher can never be erased", author: "Unknown" },
+                { text: "To teach is to touch a life forever", author: "Unknown" },
+                { text: "A teacher takes a hand, opens a mind, and touches a heart", author: "Unknown" },
+                { text: "The best teachers teach from the heart, not from the book", author: "Unknown" },
+                { text: "Thank you for being my guiding star, Thirumala Madam", author: "Your Student" },
+                { text: "Respect for you is as deep as the ocean, as high as the sky", author: "With Love" },
+                { text: "You are not just a teacher, you are a mother figure to me", author: "Forever Grateful" }
+            ]
+        };
+
+        // ============================================
+        // STATE VARIABLES
+        // ============================================
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        let isShuffle = false;
+        let audio = null;
+        let typeLine = 0;
+        let typeChar = 0;
+        let progressInterval = null;
+        let visualizerInterval = null;
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        window.addEventListener('load', () => {
+            createLoaderParticles();
+            startLoadingSequence();
+            createStars();
+            createFloatingDecorations();
+            setupMadamNameAnimation();
+        });
+
+        // ============================================
+        // LOADING SEQUENCE
+        // ============================================
+        function createLoaderParticles() {
+            const container = document.getElementById('loaderParticles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'loader-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        function startLoadingSequence() {
+            const percentEl = document.getElementById('loadPercent');
+            let percent = 0;
+            
+            const interval = setInterval(() => {
+                percent += Math.floor(Math.random() * 8) + 2;
+                if (percent > 100) percent = 100;
+                percentEl.textContent = percent + '%';
+                
+                if (percent === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('shockwave').classList.add('active');
+                        setTimeout(initExperience, 500);
+                    }, 300);
+                }
+            }, 80);
+        }
+
+        function initExperience() {
+            document.getElementById('megaLoader').classList.add('explode');
+            
+            setTimeout(() => {
+                createExplosion();
+            }, 200);
+            
+            setTimeout(() => {
+                launchBalloonStorm();
+            }, 600);
+            
+            setTimeout(() => {
+                startConfetti();
+            }, 1000);
+            
+            setTimeout(() => {
+                document.getElementById('mainWrapper').classList.add('show');
+                startSlideshow();
+                startTypewriter();
+                startQuoteCarousel();
+                generatePlaylist();
+                startFloatingHearts();
+            }, 1500);
+            
+            setTimeout(() => {
+                playSong(0);
+            }, 3000);
+        }
+
+        // ============================================
+        // EXPLOSION SYSTEM
+        // ============================================
+        function createExplosion() {
+            const container = document.getElementById('explosionContainer');
+            const colors = ['#ffd700', '#ff1493', '#ff69b4', '#9400d3', '#00ffff', '#ff4500', '#00ff00', '#ff006e'];
+            
+            for (let i = 0; i < 150; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'blast-particle';
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = `radial-gradient(circle, ${color}, ${color}88)`;
+                particle.style.boxShadow = `0 0 30px ${color}`;
+                
+                const angle = (Math.PI * 2 * i) / 150 + Math.random() * 0.5;
+                const velocity = Math.random() * 600 + 300;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.classList.add('explode-anim');
+                }, i * 5);
+                
+                setTimeout(() => particle.remove(), 2000);
+            }
+        }
+
+        function triggerMegaExplosion() {
+            createExplosion();
+            document.body.classList.add('shake');
+            setTimeout(() => document.body.classList.remove('shake'), 500);
+            createFireworks();
+        }
+
+        // ============================================
+        // BALLOON SYSTEM
+        // ============================================
+        function launchBalloonStorm() {
+            const container = document.getElementById('balloonContainer');
+            const colors = ['balloon-gold', 'balloon-pink', 'balloon-purple', 'balloon-rose', 'balloon-blue'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.className = `balloon ${colors[Math.floor(Math.random() * colors.length)]}`;
+                    balloon.style.left = (Math.random() * 90 + 5) + '%';
+                    balloon.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                    balloon.style.animationDelay = (Math.random() * 2) + 's';
+                    balloon.style.transform = `scale(${Math.random() * 0.5 + 0.8})`;
+                    
+                    container.appendChild(balloon);
+                    
+                    setTimeout(() => balloon.remove(), 12000);
+                }, i * 150);
+            }
+        }
+
+        // ============================================
+        // CONFETTI SYSTEM
+        // ============================================
+        function startConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const confetti = [];
+            const colors = ['#ffd700', '#ff1493', '#ff69b4', '#9400d3', '#00ffff', '#ffffff', '#ff006e', '#00ff00'];
+            
+            class ConfettiPiece {
+                constructor() {
+                    this.reset();
+                }
+                
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = -20;
+                    this.size = Math.random() * 12 + 6;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.speedY = Math.random() * 4 + 2;
+                    this.speedX = Math.random() * 4 - 2;
+                    this.rotation = Math.random() * 360;
+                    this.rotationSpeed = Math.random() * 8 - 4;
+                    this.wobble = Math.random() * Math.PI * 2;
+                    this.wobbleSpeed = 0.05;
+                }
+                
+                update() {
+                    this.y += this.speedY;
+                    this.x += Math.sin(this.wobble) * 2 + this.speedX;
+                    this.rotation += this.rotationSpeed;
+                    this.wobble += this.wobbleSpeed;
+                    
+                    if (this.y > canvas.height) {
+                        this.reset();
+                    }
+                }
+                
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation * Math.PI / 180);
+                    ctx.fillStyle = this.color;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = this.color;
+                    
+                    // Draw different shapes
+                    const shape = Math.floor(Math.random() * 3);
+                    if (shape === 0) {
+                        ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                    } else if (shape === 1) {
+                        ctx.beginPath();
+                        ctx.arc(0, 0, this.size/2, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else {
+                        ctx.beginPath();
+                        ctx.moveTo(0, -this.size/2);
+                        ctx.lineTo(this.size/2, this.size/2);
+                        ctx.lineTo(-this.size/2, this.size/2);
+                        ctx.fill();
+                    }
+                    
+                    ctx.restore();
+                }
+            }
+            
+            for (let i = 0; i < 300; i++) {
+                confetti.push(new ConfettiPiece());
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                confetti.forEach(c => {
+                    c.update();
+                    c.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+            
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // ============================================
+        // BACKGROUND EFFECTS
+        // ============================================
+        function createStars() {
+            const container = document.getElementById('starsContainer');
+            for (let i = 0; i < 300; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                const size = Math.random() * 4 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(star);
+            }
+            
+            // Add shooting stars
+            setInterval(() => {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.top = Math.random() * 50 + '%';
+                shootingStar.style.left = '0';
+                shootingStar.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                container.appendChild(shootingStar);
+                setTimeout(() => shootingStar.remove(), 3000);
+            }, 4000);
+        }
+
+        function createFloatingDecorations() {
+            const container = document.getElementById('floatingDecorations');
+            const emojis = ['💖', '✨', '🌸', '💐', '🦋', '💎', '👑', '💝', '🌹', '⭐', '🎀', '💫'];
+            
+            for (let i = 0; i < 30; i++) {
+                const el = document.createElement('div');
+                el.className = 'floater';
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.top = Math.random() * 100 + '%';
+                el.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                el.style.animationDelay = (Math.random() * 10) + 's';
+                el.style.fontSize = (Math.random() * 30 + 25) + 'px';
+                container.appendChild(el);
+            }
+        }
+
+        function setupMadamNameAnimation() {
+            const name = document.getElementById('madamName');
+            const text = name.textContent;
+            name.innerHTML = '';
+            text.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'letter';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = (i * 0.1) + 's';
+                name.appendChild(span);
+            });
+        }
+
+        // ============================================
+        // GALLERY SYSTEM
+        // ============================================
+        function startSlideshow() {
+            const slides = document.querySelectorAll('.gallery-slide');
+            const indicatorsContainer = document.getElementById('indicators');
+            let current = 0;
+            
+            // Create indicators
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('div');
+                dot.className = 'indicator' + (idx === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(idx);
+                indicatorsContainer.appendChild(dot);
+            });
+            
+            const indicators = document.querySelectorAll('.indicator');
+            
+            function goToSlide(index) {
+                slides[current].classList.remove('active');
+                indicators[current].classList.remove('active');
+                current = index;
+                slides[current].classList.add('active');
+                indicators[current].classList.add('active');
+            }
+            
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                indicators[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+                indicators[current].classList.add('active');
+            }, 5000);
+        }
+
+        // ============================================
+        // TYPEWRITER SYSTEM
+        // ============================================
+        function startTypewriter() {
+            const element = document.getElementById('typewriter');
+            
+            function type() {
+                if (typeLine < config.messages.length) {
+                    const line = config.messages[typeLine];
+                    if (typeChar < line.length) {
+                        element.innerHTML += line.charAt(typeChar);
+                        typeChar++;
+                        setTimeout(type, 50);
+                    } else {
+                        element.innerHTML += '<br><br>';
+                        typeChar = 0;
+                        typeLine++;
+                        setTimeout(type, 300);
+                    }
+                } else {
+                    document.getElementById('cursor').style.display = 'none';
+                }
+            }
+            type();
+        }
+
+        // ============================================
+        // QUOTE CAROUSEL
+        // ============================================
+        function startQuoteCarousel() {
+            const textEl = document.getElementById('quoteText');
+            const authorEl = document.getElementById('quoteAuthor');
+            let index = 0;
+            
+            setInterval(() => {
+                textEl.classList.remove('visible');
+                setTimeout(() => {
+                    index = (index + 1) % config.quotes.length;
+                    textEl.textContent = `"${config.quotes[index].text}"`;
+                    authorEl.textContent = `- ${config.quotes[index].author}`;
+                    textEl.classList.add('visible');
+                }, 1000);
+            }, 8000);
+            
+            setTimeout(() => textEl.classList.add('visible'), 1000);
+        }
+
+        // ============================================
+        // MUSIC PLAYER SYSTEM
+        // ============================================
+        function generatePlaylist() {
+            const container = document.getElementById('playlistContainer');
+            config.songs.forEach((song, idx) => {
+                const item = document.createElement('div');
+                item.className = 'playlist-item';
+                item.onclick = () => playSong(idx);
+                item.innerHTML = `
+                    <div class="song-info">
+                        <div class="song-name">${song.title}</div>
+                        <div class="song-artist">${song.artist}</div>
+                    </div>
+                    <div class="song-duration">${song.duration}</div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function playSong(index) {
+            if (audio) {
+                audio.pause();
+                audio = null;
+                clearInterval(progressInterval);
+            }
+            
+            currentSongIndex = index;
+            const song = config.songs[index];
+            
+            audio = new Audio(song.url);
+            audio.volume = 0.7;
+            
+            audio.onplay = () => {
+                isPlaying = true;
+                document.getElementById('vinylDisc').classList.add('playing');
+                document.getElementById('playBtn').textContent = '⏸️ Pause';
+                document.getElementById('trackTitle').textContent = song.title;
+                document.getElementById('trackArtist').textContent = song.artist;
+                updatePlaylist();
+                startProgressBar();
+                startVisualizer();
+            };
+            
+            audio.onpause = () => {
+                isPlaying = false;
+                document.getElementById('vinylDisc').classList.remove('playing');
+                document.getElementById('playBtn').textContent = '▶️ Play';
+                clearInterval(progressInterval);
+                clearInterval(visualizerInterval);
+            };
+            
+            audio.onended = () => {
+                if (isShuffle) {
+                    playSong(Math.floor(Math.random() * config.songs.length));
+                } else {
+                    nextSong();
+                }
+            };
+            
+            audio.play().catch(e => {
+                console.log('Audio play failed:', e);
+                document.getElementById('trackTitle').textContent = 'Click to Play';
+            });
+        }
+
+        function togglePlay() {
+            if (!audio) {
+                playSong(currentSongIndex);
+            } else if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+        }
+
+        function nextSong() {
+            const next = isShuffle ? 
+                Math.floor(Math.random() * config.songs.length) : 
+                (currentSongIndex + 1) % config.songs.length;
+            playSong(next);
+        }
+
+        function prevSong() {
+            const prev = (currentSongIndex - 1 + config.songs.length) % config.songs.length;
+            playSong(prev);
+        }
+
+        function toggleShuffle() {
+            isShuffle = !isShuffle;
+            document.getElementById('shuffleBtn').textContent = 
+                isShuffle ? '🔀 Shuffle: ON' : '🔀 Shuffle: OFF';
+        }
+
+        function updatePlaylist() {
+            document.querySelectorAll('.playlist-item').forEach((item, idx) => {
+                item.classList.toggle('active', idx === currentSongIndex);
+            });
+        }
+
+        function startProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            progressInterval = setInterval(() => {
+                if (audio && audio.duration) {
+                    const percent = (audio.currentTime / audio.duration) * 100;
+                    progressBar.style.width = percent + '%';
+                }
+            }, 100);
+        }
+
+        document.getElementById('progressContainer').addEventListener('click', (e) => {
+            if (audio && audio.duration) {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                audio.currentTime = percent * audio.duration;
+            }
+        });
+
+        function startVisualizer() {
+            const bars = document.querySelectorAll('.v-bar');
+            visualizerInterval = setInterval(() => {
+                if (isPlaying) {
+                    bars.forEach(bar => {
+                        const height = Math.random() * 90 + 10;
+                        bar.style.height = height + '%';
+                    });
+                } else {
+                    bars.forEach(bar => {
+                        bar.style.height = '10%';
+                    });
+                }
+            }, 80);
+        }
+
+        // ============================================
+        // FLOATING HEARTS SYSTEM
+        // ============================================
+        function startFloatingHearts() {
+            const hearts = ['💖', '💝', '💕', '💗', '💓', '🌸', '✨', '💐', '🌹', '💞'];
+            
+            setInterval(() => {
+                createFloatingHeart(hearts[Math.floor(Math.random() * hearts.length)]);
+            }, 1500);
+        }
+
+        function createFloatingHeart(emoji = '💖') {
+            const container = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = emoji;
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.filter = `drop-shadow(0 0 15px ${['#ff1493', '#ffd700', '#ff69b4'][Math.floor(Math.random() * 3)]})`;
+            
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        // ============================================
+        // FIREWORKS SYSTEM
+        // ============================================
+        function triggerFireworks() {
+            const colors = ['#ffd700', '#ff1493', '#00ffff', '#ff4500', '#9400d3', '#00ff00', '#ff006e', '#ffffff'];
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight * 0.6;
+                    createFirework(x, y, colors[Math.floor(Math.random() * colors.length)]);
+                }, i * 200);
+            }
+        }
+
+        function createFirework(x, y, color) {
+            const particleCount = 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework-particle';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 15px ${color}`;
+                
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = Math.random() * 150 + 80;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                    { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 1200,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+                
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1200);
+            }
+            
+            // Create sparkles around explosion
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = (x + (Math.random() - 0.5) * 100) + 'px';
+                    sparkle.style.top = (y + (Math.random() - 0.5) * 100) + 'px';
+                    sparkle.style.width = '4px';
+                    sparkle.style.height = '4px';
+                    sparkle.style.background = '#fff';
+                    sparkle.style.borderRadius = '50%';
+                    sparkle.style.boxShadow = `0 0 10px ${color}`;
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.zIndex = '9999';
+                    sparkle.animate([
+                        { transform: 'scale(0)', opacity: 1 },
+                        { transform: 'scale(2)', opacity: 0 }
+                    ], { duration: 600 });
+                    document.body.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 600);
+                }, i * 30);
+            }
+        }
+
+        // ============================================
+        // CURSOR EFFECTS
+        // ============================================
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.7) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle-cursor';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('button') && !e.target.closest('.playlist-item') && !e.target.closest('.indicator')) {
+                createFirework(e.clientX, e.clientY, '#ffd700');
+                createFloatingHeart('💖');
+            }
+        });
+
+        // ============================================
+        // KEYBOARD CONTROLS
+        // ============================================
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                togglePlay();
+            } else if (e.code === 'ArrowRight') {
+                nextSong();
+            } else if (e.code === 'ArrowLeft') {
+                prevSong();
+            } else if (e.code === 'KeyE') {
+                triggerMegaExplosion();
+            } else if (e.code === 'KeyB') {
+                launchBalloonStorm();
+            } else if (e.code === 'KeyF') {
+                triggerFireworks();
+            }
+        });
+
+        // ============================================
+        // CONSOLE EASTER EGG
+        // ============================================
+        console.log('%c🌸 Happy Women\'s Day Thirumala Madam! 🌸', 'font-size: 30px; color: #ff1493; font-weight: bold; text-shadow: 2px 2px 4px #ffd700;');
+        console.log('%cMade with love and respect for the most amazing teacher!', 'font-size: 16px; color: #ffd700;');
+    </script>
+</body>
+</html>
